@@ -36,7 +36,7 @@ router.get('/:id', handleValidateId, async (req, res, next) => {
 
 // CREATE
 // POST api/jobs
-router.post('/', handleValidateId, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
         const recipeAdd = await Recipe.create(req.body);
         res.status(201).json(recipeAdd)
@@ -46,18 +46,15 @@ router.post('/', handleValidateId, async (req, res, next) => {
 });
 
 
-
 // UPDATE
 // PUT api/jobs/5a7db6c74d55bc51bdf39793
-router.put('/:title', handleValidateId, async (req, res, next) => {
+router.put('/:id', handleValidateId, async (req, res, next) => {
     try {
-        const title = req.params.title.replace('%20', ' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
-        const recipeUpdate = await Recipe.findOneAndUpdate({title: title}, req.body, {new: true})
-        if (recipeUpdate) {
-            res.status(200).json(recipeUpdate)
-        } else {
-            res.sendStatus(404)
-        }
+        const recipeUpdate = await Recipe.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
+        .then(handleRecordExists)
+        .then((recipe) => {
+          res.json(recipe);
+        })
     } catch (err) {
          next(err)
     }
@@ -67,15 +64,13 @@ router.put('/:title', handleValidateId, async (req, res, next) => {
 
 // DESTROY
 // DELETE api/jobs/5a7db6c74d55bc51bdf39793
-router.delete('/:title', handleValidateId, async (req, res, next) => {
+router.delete('/:id', handleValidateId, async (req, res, next) => {
     try {
-        const title = req.params.title.replace('%20', ' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
-        const recipeDelete = await Recipe.findOneAndDelete({title: title})
-        if (recipeDelete) {
-            res.sendStatus(204)
-        } else {
-            res.sendStatus(404)
-        }  
+        const recipeDelete = await Recipe.findOneAndDelete({_id: req.params.id})
+        .then(handleRecordExists)
+        .then((recipe) => {
+          res.sendStatus(204);
+        })    
     } catch (err) {
         next(err)
     }
