@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Braised Beef Chilli",
+        "cookTime": "45 minutes",
+        "difficult": true,
+        "ingredients": ["Beef", "Onions", "Garlic", "Olive Oil", "Chorizo", "Cumin", "Tomato Ketchup", "Dark Brown Sugar", "Bolotti Beans"],
+        "instructions": "Preheat the oven to 120C or 225F gas mark 1.Take the meat out of the fridge to de-chill. Pulse the onions and garlic in a food processor until finely chopped. Heat 2 tbsp olive oil in a large casserole and sear the meat on all sides until golden. Set to one side and add another small slug of oil to brown the chorizo. Remove and add the onion and garlic, spices, herbs and chillies then cook until soft in the chorizo oil. Season with salt and pepper and add the vinegar, tomatoes, ketchup and sugar. Put all the meat back into the pot with 400ml water (or red wine if you prefer), bring up to a simmer and cook, covered, in the low oven. After 2 hours, check the meat and add the beans. Cook for a further hour and just before serving, pull the meat apart with a pair of forks."
+    },
+    {   "title": "Spicy Arrabiata Penne",
+        "cookTime": "35 minutes",
+        "difficult": false,
+        "ingredients": ["Penne Rigate", "Olive Oil", "Garlic", "Chopped Tomatoes", "Red Chile Flakes", "Basil", "Italian Seasoning", "Parmigian-Reggiano"],
+        "instructions": "Bring a large pot of water to a boil. Add kosher salt to the boiling water, then add the pasta. Cook according to the package instructions, about 9 minutes. In a large skillet over medium-high heat, add the olive oil and heat until the oil starts to shimmer. Add the garlic and cook, stirring, until fragrant, 1 to 2 minutes. Add the chopped tomatoes, red chile flakes, Italian seasoning and salt and pepper to taste. Bring to a boil and cook for 5 minutes. Remove from the heat and add the chopped basil. Drain the pasta and add it to the sauce. Garnish with Parmigiano-Reggiano flakes and more basil and serve warm."
+        
+    },
+    {
+        "title": "Banana Pancakes",
+        "cookTime": "15 minutes",
+        "difficult": false,
+        "ingredients": ["Banana", "Eggs", "Baking Powder", "Vanilla Extract", "Oil", "Pecan Nuts", "Rasberries"],
+        "instructions": "In a bowl, mash the banana with a fork until it resembles a thick purée. Stir in the eggs, baking powder and vanilla. Heat a large non-stick frying pan or pancake pan over a medium heat and brush with half the oil. Using half the batter, spoon two pancakes into the pan, cook for 1-2 mins each side, then tip onto a plate. Repeat the process with the remaining oil and batter. Top the pancakes with the pecans and raspberries."
+        
+    },
+    {
+        "title": "Pizza For Pros",
+        "cookTime": "It depends.",
+        "difficult": false,
+        "ingredients": ["Money", "Phone", "Car and key"],
+        "instructions": "Call to order for deliver or pick-up!"
+        
+    }
+]
