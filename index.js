@@ -2,6 +2,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const { Router } = require('express');
+// Require the error handlers
+const { handleErrors, handleValidationErrors } = require('./middleware/custom_errors');
+
 
 // Instantiate express application object
 const app = express();
@@ -21,17 +25,25 @@ app.use(express.json());
 // a specific content type (such as when using Axios)
 app.use(express.urlencoded({ extended: true }));
 
+
+
 // Controllers 
 
-const recipeController = require('./controllers/recipeController')
+const recipeController = require('./controllers/recipeController');
 app.use('/api/recipes/', recipeController)
-
 
 
 // Define a port for API to run on, if the environment
 // variable called `PORT` is not found use port 4000
 app.set('port', process.env.PORT || 4000);
+
+app.use(handleValidationErrors);
+// The catch all for handling errors
+// MUST BE PLACED IMMEDIATELY BEFORE `app.listen`
+app.use(handleErrors);
+
 // Run server on designated port
 app.listen(app.get('port'), () => {
   console.log('listening on port ' + app.get('port'));
 });
+
