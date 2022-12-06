@@ -1,8 +1,6 @@
 // Require necessary NPM packages
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
-const { Router } = require('express');
 // Require the error handlers
 const { handleErrors, handleValidationErrors } = require('./middleware/custom_errors');
 
@@ -25,6 +23,11 @@ app.use(express.json());
 // a specific content type (such as when using Axios)
 app.use(express.urlencoded({ extended: true }));
 
+
+// redirect any requests to the homepage to bookmarks
+app.get("/", (req, res) => {
+  res.redirect("/api/recipes");
+});
 
 
 // Controllers 
