@@ -38,7 +38,7 @@ app.use('/api/recipes/', recipeController)
 
 // Define a port for API to run on, if the environment
 // variable called `PORT` is not found use port 4000
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 8080);
 
 app.use(handleValidationErrors);
 // The catch all for handling errors
