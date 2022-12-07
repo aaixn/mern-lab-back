@@ -4,29 +4,13 @@ const supertest = require('supertest')
 const api = supertest(require('../index.js'));
 
 describe('GET /api/recipes', () => {
-    it('should return a 200 response', done => {
+    it('Should return a 200 response', done => {
         api
         .get('/api/recipes')
         .set('Accept', 'application/json')
         .expect(200, done)
     })
 })
-
-// describe('GET /api/recipes/:id', () => {
-//     it('should return an object of a specific ID and contains the right fields'), done => {
-//         api
-//             .get('/api/recipes/638fdfd593ed8591ff3fbd7b')
-//             .set('Accept', 'application/json')
-//             .end((err, res) => {
-//                 expect(res, body).to.include({
-//                     _id: "638fdfd593ed8591ff3fbd7b",
-//                     title: "Braised Beef Chilli",
-//                     cookTime: "45 minutes"
-//                 })
-//                 done()
-//             })
-//     }
-// })
 
 
 describe('GET /api/recipes/:id', () => {
@@ -41,7 +25,7 @@ describe('GET /api/recipes/:id', () => {
         })
     }) 
     
-    it('retrieve a recipe by it\'s ID with the correct fields', done => {
+    it('Retrieve a recipe by it\'s ID with the correct fields', done => {
         api
         .get(`/api/recipes/${id}`)
         .set('Accept', 'application/json')
@@ -49,6 +33,43 @@ describe('GET /api/recipes/:id', () => {
             expect(res.body._id).to.equal(id)
             expect(res.body.title).to.equal('Braised Beef Chilli')
             expect(res.body.cookTime).to.be.a('string')
+            done()
+        })
+    })
+})
+
+describe('DELETE /api/recipes/:id', () => {
+    let beforeLength
+    let theIdToBeDeleted
+
+    before(done => {
+        api
+            .get('/api/recipes')
+            .set('Accept', 'application/json')
+            .end((err, res) => {
+                beforeLength = res.body.length
+                theIdToBeDeleted = res.body[0]._id
+                done()
+            })
+    })
+    
+    before( done => {
+        api
+            .delete(`/api/recipes/${theIdToBeDeleted}`)
+            .set('Accept', 'application/json')
+            .end((err, res) => {
+                done()
+            })
+            
+    })
+
+    it('Delete a recipe by ID', done => {
+        api
+        .get('/api/recipes')
+        .set('Accept', 'application/json')
+        .end((err, res) =>{
+            expect(res.body.length).to.equal(beforeLength - 1)
+            expect(res.body.find((recipe) => recipe._id == theIdToBeDeleted)).to.equal(undefined)
             done()
         })
     })
