@@ -4,7 +4,7 @@
   "description": "Recipe Book Back End",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node_modules/.bin/mocha",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
@@ -24,5 +24,10 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^6.7.5"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.1.0",
+    "supertest": "^6.3.2"
   }
 }
