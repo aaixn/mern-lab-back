@@ -1,5 +1,6 @@
 const should = require('chai').should()
 const expect = require('chai').expect
+const e = require('express');
 const supertest = require('supertest')
 const api = supertest(require('../index.js'));
 
@@ -93,6 +94,43 @@ describe('POST /api/recipes', () => {
         .set('Accept', 'application/json')
         .end ((err, res) => {
             expect(res.body.find((recipe) => recipe.title === newRecipe.title)).to.be.an('object')
+            done()
+        })
+    })
+})
+
+describe('PUT /api/recipes/:id', () => {
+    let recipeUpdate
+    let idToBeUpdated
+
+    before(done =>{
+        api
+        .get('/api/recipes')
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+            recipeUpdate = res.body[0]
+            idToBeUpdated = res.body[0]._id
+            done()
+        })
+    })
+    before(done => {
+        api
+        .put(`/api/recipes/${idToBeUpdated}`)
+        .set('Application', 'application/json')
+        .send({
+            title: 'Yogurt'
+        })
+        .end((err, res) => {
+            done()
+        })
+    })
+
+    it('Should update a recipe by ID', done => {
+        api
+        .get(`/api/recipes/${idToBeUpdated}`)
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+            expect(res.body.title).to.equal('Yogurt')
             done()
         })
     })
