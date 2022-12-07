@@ -74,3 +74,26 @@ describe('DELETE /api/recipes/:id', () => {
         })
     })
 })
+
+describe('POST /api/recipes', () => {
+    const newRecipe = {
+        title: 'Ice-cream'
+    }
+
+    before(done =>{
+        api
+        .post('/api/recipes')
+        .set('Accept', 'application/json')
+        .send(newRecipe)
+        .end(done)
+    })
+    it('Should add a recipe object to the collection recipe and return it', done =>{
+        api
+        .get('/api/recipes')
+        .set('Accept', 'application/json')
+        .end ((err, res) => {
+            expect(res.body.find((recipe) => recipe.title === newRecipe.title)).to.be.an('object')
+            done()
+        })
+    })
+})
